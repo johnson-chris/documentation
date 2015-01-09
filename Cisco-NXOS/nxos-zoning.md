@@ -1,5 +1,7 @@
+####A collection of notes on how to setup a new FC initiator on a Cisco NX-OS switch
 
-####Check for exisiting fabric logins for new pwwn, you can also pre build this if the wwpn is known
+
+####Check for exisiting fabric logins for new pwwn
 `N5K-A# show flogi database`
 
 
