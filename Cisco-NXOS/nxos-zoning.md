@@ -34,6 +34,7 @@ San-po100        1     0xa0001f  20:00:00:25:b5:0a:00:0c 20:00:00:25:b5:ff:00:0c
 
 #####Commit the device alias to the switch and exit the device alias configuration section
 `N5K-A(config-device-alias-db)# device-alias commit`
+
 `N5K-A(config-device-alias-db)# exit`
 
 #####Create a zone for the new host
@@ -47,6 +48,7 @@ San-po100        1     0xa0001f  20:00:00:25:b5:0a:00:0c 20:00:00:25:b5:ff:00:0c
 `N5K-A(config-zone)# member device-alias "device-alias we just created"`
 #####Or you can use the pwwn of the device if you dont want to zone off the device-alias name
 `N5K-A(config-zone)# member pwwn "pwwn of host"`
+
 `N5K-A(config-zone)# member pwwn "pwwn of storage target"`
 
 
@@ -58,6 +60,7 @@ San-po100        1     0xa0001f  20:00:00:25:b5:0a:00:0c 20:00:00:25:b5:ff:00:0c
 
 #####Example
 `N5K-A(config)# zoneset name vsphere-fabricA vsan 1`
+
 `N5K-A(config-zoneset)# member esx01-fabricA`
 
 #####Check the exisitng zoneset configuration
