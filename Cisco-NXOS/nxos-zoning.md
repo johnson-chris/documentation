@@ -18,13 +18,13 @@ San-po100        1     0xa0001f  20:00:00:25:b5:0a:00:0c 20:00:00:25:b5:ff:00:0c
 ```
 
 
-####Check for device alias 
+####Check for device alias
 `N5K-A# show device-alias database`
 
-####Set a device alias for a new wwpn 
+####Set a device alias for a new wwpn
 
-####Enter global configuration mode 
-`N5K-A# configure terminal` 
+#####Enter global configuration mode
+`N5K-A# configure terminal`
 
 ####Enter the device alias configuration section
 `N5K-A(config)#device-alias database`
@@ -36,39 +36,35 @@ San-po100        1     0xa0001f  20:00:00:25:b5:0a:00:0c 20:00:00:25:b5:ff:00:0c
 `N5K-A(config-device-alias-db)# device-alias commit`
 `N5K-A(config-device-alias-db)# exit`
 
-#####Create a zone for the new host 
+#####Create a zone for the new host
 `N5K-A(config)# zone name 'hostname-fabricid' vsan 'vsan id'`
 
 
-#####Example 
+#####Example
 `N5K-A(config)# zone name esx01-fabricA vsan 1`
 
 #####You can then add members to the zone you will be in the zone configuration section
+`N5K-A(config-zone)# member device-alias "device-alias we just created"`
+#####Or you can use the pwwn of the device if you dont want to zone off the device-alias name
 `N5K-A(config-zone)# member pwwn "pwwn of host"`
 `N5K-A(config-zone)# member pwwn "pwwn of storage target"`
+
 
 #####You can also zone by device-alias name (I am thinking about converting to using this in the future)
 `N5K-A(config-zone)# member device-alias "device-alias name"`
 
-#####Add the zone to exisiting zoneset or create a new one 
+#####Add the zone to exisiting zoneset or create a new one
 `N5K-A(config)# zoneset name "zone-fabric name" vsan "vsan id"`
 
-#####Example 
-`N5K-A(config)# zoneset name vsphere-fabricA vsan 1` 
+#####Example
+`N5K-A(config)# zoneset name vsphere-fabricA vsan 1`
 `N5K-A(config-zoneset)# member esx01-fabricA`
 
 #####Check the exisitng zoneset configuration
-`N5K-A#show zoneset` 
+`N5K-A#show zoneset`
 
-#####Check the exisiting active zonesets 
-`N5K-A#show zoneset active` 
+#####Check the exisiting active zonesets
+`N5K-A#show zoneset active`
 
-#####To effect the fabric change you will need to enable the zoneset 
+#####To effect the fabric change you will need to enable the zoneset
 `N5K-A(config)# zoneset activate name "zoneset name" vsan "vsanid"`
-
-
-
- 
-
-
-
